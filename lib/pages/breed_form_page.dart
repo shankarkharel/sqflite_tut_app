@@ -1,8 +1,12 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
-import 'package:flutter_sqflite_example/models/breed.dart';
-import 'package:flutter_sqflite_example/services/database_service.dart';
+
+import '../models/breed.dart';
+import '../services/database_service.dart';
 
 class BreedFormPage extends StatefulWidget {
+  // ignore: use_super_parameters
   const BreedFormPage({Key? key}) : super(key: key);
 
   @override
@@ -29,7 +33,7 @@ class _BreedFormPageState extends State<BreedFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add a new breed'),
+        title: const Text('Add a new breed'),
         centerTitle: true,
       ),
       body: Padding(
@@ -39,26 +43,26 @@ class _BreedFormPageState extends State<BreedFormPage> {
           children: [
             TextField(
               controller: _nameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter name of the breed here',
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: _descController,
               maxLines: 7,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter description about the breed here',
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             SizedBox(
               height: 45.0,
               child: ElevatedButton(
                 onPressed: _onSave,
-                child: Text(
+                child: const Text(
                   'Save the Breed',
                   style: TextStyle(
                     fontSize: 16.0,

@@ -1,12 +1,16 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
-import 'package:flutter_sqflite_example/common_widgets/dog_builder.dart';
-import 'package:flutter_sqflite_example/common_widgets/breed_builder.dart';
-import 'package:flutter_sqflite_example/models/breed.dart';
-import 'package:flutter_sqflite_example/models/dog.dart';
-import 'package:flutter_sqflite_example/pages/breed_form_page.dart';
-import 'package:flutter_sqflite_example/pages/dog_form_page.dart';
-import 'package:flutter_sqflite_example/services/database_service.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../common_widgets/breed_builder.dart';
+import '../common_widgets/dog_builder.dart';
+import '../models/breed.dart';
+import '../models/dog.dart';
+import '../services/database_service.dart';
+import 'breed_form_page.dart';
+import 'dog_form_page.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -37,16 +41,16 @@ class _HomePageState extends State<HomePage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Dog Database'),
+          title: const Text('Dog Database'),
           centerTitle: true,
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                padding: EdgeInsets.symmetric(vertical: 16.0),
                 child: Text('Dogs'),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                padding: EdgeInsets.symmetric(vertical: 16.0),
                 child: Text('Breeds'),
               ),
             ],
@@ -83,29 +87,29 @@ class _HomePageState extends State<HomePage> {
                 Navigator.of(context)
                     .push(
                       MaterialPageRoute(
-                        builder: (_) => BreedFormPage(),
+                        builder: (_) => const BreedFormPage(),
                         fullscreenDialog: true,
                       ),
                     )
                     .then((_) => setState(() {}));
               },
               heroTag: 'addBreed',
-              child: FaIcon(FontAwesomeIcons.plus),
+              child: const FaIcon(FontAwesomeIcons.plus),
             ),
-            SizedBox(height: 12.0),
+            const SizedBox(height: 12.0),
             FloatingActionButton(
               onPressed: () {
                 Navigator.of(context)
                     .push(
                       MaterialPageRoute(
-                        builder: (_) => DogFormPage(),
+                        builder: (_) => const DogFormPage(),
                         fullscreenDialog: true,
                       ),
                     )
                     .then((_) => setState(() {}));
               },
               heroTag: 'addDog',
-              child: FaIcon(FontAwesomeIcons.paw),
+              child: const FaIcon(FontAwesomeIcons.paw),
             ),
           ],
         ),

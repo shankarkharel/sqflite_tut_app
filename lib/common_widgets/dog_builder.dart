@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sqflite_example/models/dog.dart';
-import 'package:flutter_sqflite_example/services/database_service.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../models/dog.dart';
+import '../services/database_service.dart';
 
 class DogBuilder extends StatelessWidget {
   const DogBuilder({
-    Key? key,
+    super.key,
     required this.future,
     required this.onEdit,
     required this.onDelete,
-  }) : super(key: key);
+  });
   final Future<List<Dog>> future;
   final Function(Dog) onEdit;
   final Function(Dog) onDelete;
@@ -26,7 +28,7 @@ class DogBuilder extends StatelessWidget {
       future: future,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }
@@ -58,28 +60,28 @@ class DogBuilder extends StatelessWidget {
                 color: Colors.grey[200],
               ),
               alignment: Alignment.center,
-              child: FaIcon(FontAwesomeIcons.dog, size: 18.0),
+              child: const FaIcon(FontAwesomeIcons.dog, size: 18.0),
             ),
-            SizedBox(width: 20.0),
+            const SizedBox(width: 20.0),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     dog.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(height: 4.0),
+                  const SizedBox(height: 4.0),
                   FutureBuilder<String>(
                     future: getBreedName(dog.breedId),
                     builder: (context, snapshot) {
                       return Text('Breed: ${snapshot.data}');
                     },
                   ),
-                  SizedBox(height: 4.0),
+                  const SizedBox(height: 4.0),
                   Row(
                     children: [
                       Text('Age: ${dog.age.toString()}, Color: '),
@@ -100,7 +102,7 @@ class DogBuilder extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: 20.0),
+            const SizedBox(width: 20.0),
             GestureDetector(
               onTap: () => onEdit(dog),
               child: Container(
@@ -114,7 +116,7 @@ class DogBuilder extends StatelessWidget {
                 child: Icon(Icons.edit, color: Colors.orange[800]),
               ),
             ),
-            SizedBox(width: 20.0),
+            const SizedBox(width: 20.0),
             GestureDetector(
               onTap: () => onDelete(dog),
               child: Container(

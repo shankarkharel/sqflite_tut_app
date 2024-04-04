@@ -1,7 +1,8 @@
-import 'package:flutter_sqflite_example/models/breed.dart';
-import 'package:flutter_sqflite_example/models/dog.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+import '../models/breed.dart';
+import '../models/dog.dart';
 
 class DatabaseService {
   // Singleton pattern

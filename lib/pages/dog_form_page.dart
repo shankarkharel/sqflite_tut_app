@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sqflite_example/common_widgets/age_slider.dart';
-import 'package:flutter_sqflite_example/common_widgets/breed_selector.dart';
-import 'package:flutter_sqflite_example/common_widgets/color_picker.dart';
-import 'package:flutter_sqflite_example/models/breed.dart';
-import 'package:flutter_sqflite_example/models/dog.dart';
-import 'package:flutter_sqflite_example/services/database_service.dart';
+
+import '../common_widgets/age_slider.dart';
+import '../common_widgets/breed_selector.dart';
+import '../common_widgets/color_picker.dart';
+import '../models/breed.dart';
+import '../models/dog.dart';
+import '../services/database_service.dart';
 
 class DogFormPage extends StatefulWidget {
-  const DogFormPage({Key? key, this.dog}) : super(key: key);
+  const DogFormPage({super.key, this.dog});
   final Dog? dog;
 
   @override
@@ -17,12 +18,12 @@ class DogFormPage extends StatefulWidget {
 class _DogFormPageState extends State<DogFormPage> {
   final TextEditingController _nameController = TextEditingController();
   static final List<Color> _colors = [
-    Color(0xFF000000),
-    Color(0xFFFFFFFF),
-    Color(0xFF947867),
-    Color(0xFFC89234),
-    Color(0xFF862F07),
-    Color(0xFF2F1B15),
+    const Color(0xFF000000),
+    const Color(0xFFFFFFFF),
+    const Color(0xFF947867),
+    const Color(0xFFC89234),
+    const Color(0xFF862F07),
+    const Color(0xFF2F1B15),
   ];
   static final List<Breed> _breeds = [];
 
@@ -44,7 +45,7 @@ class _DogFormPageState extends State<DogFormPage> {
 
   Future<List<Breed>> _getBreeds() async {
     final breeds = await _databaseService.breeds();
-    if (_breeds.length == 0) _breeds.addAll(breeds);
+    if (_breeds.isEmpty) _breeds.addAll(breeds);
     if (widget.dog != null) {
       _selectedBreed = _breeds.indexWhere((e) => e.id == widget.dog!.breedId);
     }
@@ -79,7 +80,7 @@ class _DogFormPageState extends State<DogFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('New Dog Record'),
+        title: const Text('New Dog Record'),
         centerTitle: true,
       ),
       body: Padding(
@@ -89,12 +90,12 @@ class _DogFormPageState extends State<DogFormPage> {
           children: [
             TextField(
               controller: _nameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter name of the dog here',
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             // Age Slider
             AgeSlider(
               max: 30.0,
@@ -105,7 +106,7 @@ class _DogFormPageState extends State<DogFormPage> {
                 });
               },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             // Color Picker
             ColorPicker(
               colors: _colors,
@@ -116,13 +117,13 @@ class _DogFormPageState extends State<DogFormPage> {
                 });
               },
             ),
-            SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             // Breed Selector
             FutureBuilder<List<Breed>>(
               future: _getBreeds(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Text("Loading breeds...");
+                  return const Text("Loading breeds...");
                 }
                 return BreedSelector(
                   breeds: _breeds.map((e) => e.name).toList(),
@@ -135,12 +136,12 @@ class _DogFormPageState extends State<DogFormPage> {
                 );
               },
             ),
-            SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             SizedBox(
               height: 45.0,
               child: ElevatedButton(
                 onPressed: _onSave,
-                child: Text(
+                child: const Text(
                   'Save the Dog data',
                   style: TextStyle(
                     fontSize: 16.0,
